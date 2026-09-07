@@ -14,3 +14,16 @@
 # social-auth-app-django 5.7.0+ requires Django>=5.1, incompatible with Django 4.2 tests
 # Keep at 5.4.x for Django 4.2 compatibility
 social-auth-app-django<5.5
+
+# django-simple-history 3.13.0+ dropped support for Django 4.2, incompatible with existing tests
+# Keep at 3.12.0 for Django 4.2 compatibility
+django-simple-history<3.13.0
+
+# djangorestframework 3.18.0+ requires Django>=5.2, incompatible with Django 4.2 tests
+# Keep at 3.17.x for Django 4.2 compatibility
+djangorestframework<3.18
+
+# pip 26.2+ is incompatible with pip-tools 7.6.0 (latest pip-tools release only
+# supports pip up to 26.1), which breaks `make upgrade`. Remove this once a
+# newer pip-tools release restores pip 26.2+ compatibility.
+pip<26.2

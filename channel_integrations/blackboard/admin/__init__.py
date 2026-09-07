@@ -45,7 +45,7 @@ class BlackboardEnterpriseCustomerConfigurationAdmin(DjangoObjectActions, admin.
         "refresh_token",
         "customer_oauth_authorization_url",
         "uuid",
-        "transmission_chunk_size",
+
     )
 
     raw_id_fields = (
@@ -77,7 +77,7 @@ class BlackboardEnterpriseCustomerConfigurationAdmin(DjangoObjectActions, admin.
                 being rendered with this admin form.
         """
         if obj.oauth_authorization_url:
-            return format_html((f'<a href="{obj.oauth_authorization_url}">Authorize Link</a>'))
+            return format_html('<a href="{}">Authorize Link</a>', obj.oauth_authorization_url)
         else:
             return None
 
