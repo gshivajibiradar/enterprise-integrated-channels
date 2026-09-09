@@ -107,11 +107,15 @@ class TestXmlsecNativeBindings(unittest.TestCase):
         verify_key = xmlsec.Key.from_memory(cert_pem, xmlsec.KeyFormat.CERT_PEM)
         verify_ctx = xmlsec.SignatureContext()
         verify_ctx.key = verify_key
+        tampered_signature = tampered_doc.find('{http://www.w3.org/2000/09/xmldsig#}Signature')
+        self.assertIsNotNone(tampered_signature)
         with self.assertRaises(xmlsec.Error):
-            verify_ctx.verify(tampered_doc.find('{http://www.w3.org/2000/09/xmldsig#}Signature'))
+            verify_ctx.verify(tampered_signature)
 
         # The untampered, signed document verifies successfully.
         verify_ctx = xmlsec.SignatureContext()
         verify_ctx.key = xmlsec.Key.from_memory(cert_pem, xmlsec.KeyFormat.CERT_PEM)
-        verify_ctx.verify(doc.find('{http://www.w3.org/2000/09/xmldsig#}Signature'))
+        original_signature = doc.find('{http://www.w3.org/2000/09/xmldsig#}Signature')
+        self.assertIsNotNone(original_signature)
+        verify_ctx.verify(original_signature)
         self.assertEqual(payload_node.text, 'hello')
