@@ -14,6 +14,15 @@ Change Log
 Unreleased
 **********
 
+0.1.70 – 2026-09-10
+*******************
+
+* feat: Add native XML security (``xmlsec``) build infrastructure required for SAML assertion
+  signing as part of the SAP SuccessFactors OCN integration. Installs ``libxml2-dev``,
+  ``libxmlsec1-dev``, and ``pkg-config`` in CI, adds ``xmlsec`` to the locked Python
+  dependencies, and adds integration tests covering native bindings and end-to-end
+  XML-DSig signing/verification.
+
 0.1.69 – 2026-08-24
 *******************
 
